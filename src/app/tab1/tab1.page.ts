@@ -23,28 +23,26 @@ export class Tab1Page {
   ngOnInit(): void {
     // (window as any).gs = this.globalStore;
 
-    this.globalStore.coffeeElectionStore.state$.subscribe(s => {
-      console.log('State', s);
-    });
+    // this.globalStore.coffeeElectionStore.state$.subscribe(s => {
+    //   console.log('State', s);
+    // });
 
     this.buildForm();
   }
 
   private buildForm() {
     this.formGroup = this.formBuilder.group({
-      newCandidateName: [null, [Validators.required, Validators.minLength(4)]],
+      newCandidateName: [null, [Validators.required]],
     });
 
-    this.formGroup.valueChanges.subscribe((fromData: any) =>
-      console.log('newCandidateName', fromData.newCandidateName),
-    );
+    // this.formGroup.valueChanges.subscribe((fromData: any) =>
+    //   console.log('newCandidateName', fromData.newCandidateName),
+    // );
   }
 
   onSubmit() {
     // Since we have  access to the FormGroup instance we can directly output the same
     if (this.formGroup.valid) {
-      console.log('Agregando nuevo candidato');
-
       this.globalStore.coffeeElectionStore.addCandidate(
         this.formGroup.value.newCandidateName,
       );

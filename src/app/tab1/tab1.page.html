@@ -1,25 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab One
+      Candidatos
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <!-- <ion-grid>
-    <ion-row>
-      <ion-col size="8">
-        <ion-item>
-          <ion-input placeholder="Nombre"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col size="4">
-        <ion-button color="primary">Agregar</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid> -->
-
   <form novalidate [formGroup]="this.formGroup" (ngSubmit)="onSubmit()">
     <ion-item>
       <ion-input
@@ -31,15 +18,30 @@
       </ion-button>
     </ion-item>
   </form>
-  <ul>
-    <li
+
+  <ion-grid>
+    <ion-row
       *ngFor="let candidate of (this.globalStore.coffeeElectionStore.state$ | async).candidates"
     >
-      <span>{{ candidate.name }}</span>
-      <span>Votes: {{ candidate.votes }}</span>
-      <button (click)="this.globalStore.coffeeElectionStore.addVote(candidate)">
-        +
-      </button>
-    </li>
-  </ul>
+      <ion-col style="line-height: 41px;">{{ candidate.name }}</ion-col>
+      <ion-col style="line-height: 41px;">Votes: {{ candidate.votes }}</ion-col>
+
+      <ion-col>
+        <ion-button
+          color="primary"
+          (click)="this.globalStore.coffeeElectionStore.addVote(candidate)"
+        >
+          +
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button
+          color="danger"
+          (click)="this.globalStore.coffeeElectionStore.removeCandidate(candidate)"
+        >
+          Eliminar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
