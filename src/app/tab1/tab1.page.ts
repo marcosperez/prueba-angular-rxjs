@@ -26,7 +26,7 @@ export class Tab1Page {
     // this.globalStore.coffeeElectionStore.state$.subscribe(s => {
     //   console.log('State', s);
     // });
-
+    this.globalStore.candidatesStore.stateChanged.subscribe(r => {});
     this.buildForm();
   }
 
@@ -43,7 +43,7 @@ export class Tab1Page {
   onSubmit() {
     // Since we have  access to the FormGroup instance we can directly output the same
     if (this.formGroup.valid) {
-      this.globalStore.coffeeElectionStore.addCandidate(
+      this.globalStore.candidatesStore.addCandidate(
         this.formGroup.value.newCandidateName,
       );
     }

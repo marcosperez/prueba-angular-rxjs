@@ -21,7 +21,7 @@
 
   <ion-grid>
     <ion-row
-      *ngFor="let candidate of (this.globalStore.coffeeElectionStore.state$ | async).candidates"
+      *ngFor="let candidate of (this.globalStore.candidatesStore.stateChanged | async).candidates"
     >
       <ion-col style="line-height: 41px;">{{ candidate.name }}</ion-col>
       <ion-col style="line-height: 41px;">Votes: {{ candidate.votes }}</ion-col>
@@ -29,7 +29,7 @@
       <ion-col>
         <ion-button
           color="primary"
-          (click)="this.globalStore.coffeeElectionStore.addVote(candidate)"
+          (click)="this.globalStore.candidatesStore.addVote(candidate)"
         >
           +
         </ion-button>
@@ -37,7 +37,7 @@
       <ion-col>
         <ion-button
           color="danger"
-          (click)="this.globalStore.coffeeElectionStore.removeCandidate(candidate)"
+          (click)="this.globalStore.candidatesStore.removeCandidate(candidate)"
         >
           Eliminar
         </ion-button>
