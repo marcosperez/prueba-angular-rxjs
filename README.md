@@ -5,7 +5,6 @@
 ## Ejecución
 
 ```
-
 npm i
 
 ionic serve
